@@ -1,33 +1,78 @@
-new CountdownTimer({
-  selector: '#timer-1',
-  targetDate: new Date('Jul 17, 2019'),
+// https://it-blog.ru/js/kak-sozdat-tajmer-obratnogo-otchyota-na-chistom-javascript/#4 
+class CountdownTimer {
+  constructor( selector,targetDate) {
+    this.dayRef = document.querySelector("span[data-value='days']");
+    this.hourRef = document.querySelector("span[data-value='hours']");
+    this.minRef = document.querySelector("span[data-value='mins']");
+    this.secRef = document.querySelector("span[data-value='secs']");
+    //  this.dateStart = null;
+    //  selector: '#timer-1',
+    this.targetDate = new Date('Jul 17, 2022').getTime();
+    this.timerId = null;
+    this.action = this.action.bind(this);
+    this.start = this.start.bind(this);
+    // this.stop = this.stop.bind(this);
+     this.dateStart = Date.now();
+;
+  }
+
+  action() {
+   
+    // this.dateStart = Date.now();
+    
+  
+    const time = this.targetDate - this.dateStart;
+    console.log(this.dateStart);
+    console.log(this.targetDate );
+   console.log(time);
+    if (time >= 0) {
+      const days = Math.floor(time / (1000 * 60 * 60 * 24));
+      console.log(days);
+      const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      console.log(hours);
+      const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+      console.log(mins);
+      const secs = Math.floor((time % (1000 * 60)) / 1000);
+      console.log(secs);
+
+
+    this.dayRef.textContent = days < 10 ? `0${days}` : days;
+    this.hourRef.textContent = hours < 10 ? `0${hours}` : hours;
+    this.minRef.textContent = mins < 10 ? `0${mins}`: mins;
+    this.secRef.textContent = secs < 10 ? `0${secs}` : secs;
+    } else {
+      // clearInterval(this.timerId);
+      console.log("Finito");
+    }
+
+  
+
+   
+    //  console.log(this.secRef.textContent);
+   }
+   start() {
+
+     this.timerId = setInterval(this.action, 1000);
+      console.log(this.dateStart);
+    //  setInterval(this.action, 1000);
+    // return this.dateStart = Date.now();
+
+      
+  }
+
+  
+}
+ const timerOf = new CountdownTimer(
+   {
+   selector: '#timer-1',
+   targetDate: new Date('Jul 17, 2019'),
+    
 });
+        //  timerOf.action();
+
+        // timerOf.start();
 
 
-/*
- * Оставшиеся дни: делим значение UTC на 1000 * 60 * 60 * 24, количество
- * миллисекунд в одном дне (миллисекунды * секунды * минуты * часы)
- */
-const days = Math.floor(time / (1000 * 60 * 60 * 24));
-
-/*
- * Оставшиеся часы: получаем остаток от предыдущего расчета с помощью оператора
- * остатка % и делим его на количество миллисекунд в одном часе
- * (1000 * 60 * 60 = миллисекунды * минуты * секунды)
- */
-const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-/*
- * Оставшиеся минуты: получаем оставшиеся минуты и делим их на количество
- * миллисекунд в одной минуте (1000 * 60 = миллисекунды * секунды)
- */
-const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-
-/*
- * Оставшиеся секунды: получаем оставшиеся секунды и делим их на количество
- * миллисекунд в одной секунде (1000)
- */
-const secs = Math.floor((time % (1000 * 60)) / 1000);
 // stopwatch
 
 // class Stopwatch {

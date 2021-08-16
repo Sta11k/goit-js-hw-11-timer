@@ -1,32 +1,20 @@
-// class CountdownTimer {
-//     constructor(selector, targetDate) {
-      
-//         // this.selector = selector;
-//         // console.log(Object.values(this.selector));
-        
-//         this.selector = selector;
-//         // this.targetDate = targetDate;
-//         //   console.log(Object.values(this.selector).join());
-//         console.log(this.targetDate);
-//   }
+const timer = {
+    start() {
+        const startTime = Data.now();
+        setInterval(() => {
+            
+            console.log("object");
+         },1000)
+    },
+}
 
-//   get area() {
-//     return this.calcArea();
-//   }
-
-//   calcArea() {
-//     return this.selector * this.targetDate;
-//   }
-// }
-
-// // const timerOf = new CountdownTimer( 10, 10);
+  timer.start();
 
 
-//  const timerOf = new CountdownTimer(
-//    {
-//    selector: 2,
-//    targetDate: 5,
-    
-// });
-// // console.log(timerOf.area); // 100
+
+
+// const days = Math.floor(time / (1000 * 60 * 60 * 24));
+// const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+// const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+// const secs = Math.floor((time % (1000 * 60)) / 1000);
 
